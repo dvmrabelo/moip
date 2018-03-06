@@ -1,0 +1,14 @@
+<div class="row col-md-6 col-md-offset-5">
+<% if @result == "0" %>
+  <h3><%= 'Aprovado' %></h3>
+<% elsif @result == "100" %>
+  <h3><%= 'Saldo insuficiente' %></h3>
+<% elsif @result == "200" %>
+ <h3><%= 'Suspeita de fraude' %></h3>
+<% elsif @result == "300" %>
+  <h3><%= 'Cartão Inválido' %></h3>
+<% elsif @result == "624" %>
+  <h3><%= 'Cartão Vencido' %></h3>
+<% end %>
+<%= link_to 'Início', root_path %>
+</div>

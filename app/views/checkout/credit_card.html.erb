@@ -1,0 +1,76 @@
+
+  <div class="row col-md-6 col-md-offset-4">
+    <h2>Transação de Crédito</h2>
+    <%= form_for @transaction, :url => credit_card_create_path do |f| %>
+      <%= f.fields_for :client do |c| %>
+        <p>
+        <div class="form-group">
+          <%= c.label "Client" %>:
+          <%= c.collection_select(:id, @clients, :id, :name) %>
+        </div>
+        </p>
+      <% end %>
+      <%= f.fields_for :buyer do |b| %>
+        <p>
+        <div class="form-group">
+          <%= b.label "Name" %>:
+          <%= b.text_field :name %>
+        </div>
+        </p>
+        <p>
+        <div class="form-group">
+          <%= b.label "E-mail" %>:
+          <%= b.text_field :email %>
+        </div>
+        </p>
+        <p>
+        <div class="form-group">
+          <%= b.label "CPF" %>:
+          <%= b.text_field :cpf %>
+        </div>
+        </p>
+      <% end %>
+      <%= f.fields_for :payment do |ff| %>
+        <p>
+        <div class="form-group">
+          <%= ff.label "Amount" %>:
+          <%= ff.number_field :amount, step: :any %>
+        </div>
+        </p>
+        <p>
+        <div class="form-group">
+          <%= ff.label "Description" %>:
+          <%= ff.text_field :description, :value => 'Credit card' %>
+        </div>
+        </p>
+        <%= ff.fields_for :card do |fff| %>
+          <p>
+          <div class="form-group">
+            <%= fff.label "Holder Name" %>:
+            <%= fff.text_field :cardHolderName %>
+          </div>
+          </p>
+          <p>
+          <div class="form-group">
+            <%= fff.label "Card Number" %>:
+            <%= fff.text_field :cardNumber %>
+          </div>
+          </p>
+          <p>
+          <div class="form-group">
+            <%= fff.label "Expiration Date" %>:
+            <%= fff.text_field :cardExpirationDate %>
+          </div>
+          </p>
+          <p>
+          <div class="form-group">
+            <%= fff.label "CVV" %>:
+            <%= fff.text_field :cardCvv %>
+          </div>
+          </p>
+        <% end %>
+      <% end %>
+      <%= f.submit "Create" %>
+    <% end %>
+    <%= link_to 'Início', root_path, :role => 'button' %>
+  </div>

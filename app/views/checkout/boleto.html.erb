@@ -1,0 +1,51 @@
+
+  <div class="row col-md-6 col-md-offset-4">
+  <h2>Boleto</h2>
+    <%= form_for @transaction, :url => boleto_create_path do |f| %>
+        <%= f.fields_for :client do |c| %>
+        <p>
+          <div class="form-group">
+            <%= c.label "Client" %>:
+            <%= c.collection_select(:id, @clients, :id, :name) %>
+          </div>
+        </p>
+        <% end %>
+        <%= f.fields_for :buyer do |b| %>
+        </p>
+        <p>
+          <div class="form-group">
+            <%= b.label "Name" %>:
+            <%= b.text_field :name %>
+          </div>
+        </p>
+        <p>
+          <div class="form-group">
+            <%= b.label "E-mail" %>:
+            <%= b.text_field :email %>
+          </div>
+        </p>
+        <p>
+          <div class="form-group">
+            <%= b.label "CPF" %>:
+            <%= b.text_field :cpf %>
+          </div>
+        </p>
+        <% end %>
+        <%= f.fields_for :payment do |ff| %>
+        <p>
+          <div class="form-group">
+            <%= ff.label "Amount" %>:
+            <%= ff.number_field :amount, step: :any %>
+          </div>
+        </p>
+        <p>
+          <div class="form-group">
+            <%= ff.label "Description" %>:
+            <%= ff.text_field :description, :value => 'Boleto' %>
+          </div>
+        </p>
+        <% end %>
+        <%= f.submit "Create" %>
+      <% end %>
+      <%= link_to 'Início', root_path %>
+  </div>
